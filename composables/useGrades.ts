@@ -1,15 +1,19 @@
 import { useFetch } from 'nuxt/app';
 import { computed } from 'vue';
 
+interface GradesApiResponse {
+  grades: string[];
+}
+
 export const useGrades = () => {
-  const { data, pending, error, refresh } = useFetch<string[]>(`/api/grades`, {
+  const { data, pending, error, refresh } = useFetch<GradesApiResponse>(`/api/grades`, {
     key: `grades`,
-    server: true,
+    server: false,
     lazy: false,
-    default: () => [],
+    default: () => ({ grades: [] }),
   });
 
-  const grades = computed(() => data?.value ?? []);
+  const grades = computed(() => data?.value?.grades ?? []);
 
   return {
     grades,

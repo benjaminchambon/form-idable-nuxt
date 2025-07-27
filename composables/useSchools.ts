@@ -1,16 +1,17 @@
-import { ref, readonly, computed } from 'vue';
+import { computed } from 'vue';
 import type { HighSchool } from '../types/highSchools';
 import { useFetch } from 'nuxt/app';
+import type { ApiResponse } from '../types/api';
 
 export const useSchools = () => {
-  const { data, pending, error, refresh } = useFetch<HighSchool[]>(`/api/schools`, {
+  const { data, pending, error, refresh } = useFetch<ApiResponse<HighSchool[]>>(`/api/schools`, {
     key: `schools`,
     server: true,
     lazy: false,
-    default: () => [],
+    default: () => ({ data: [] }),
   });
 
-  const schools = computed(() => data?.value ?? []);
+  const schools = computed(() => data.value?.data ?? []);
 
   return {
     schools,
