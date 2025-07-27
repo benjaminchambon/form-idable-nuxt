@@ -8,17 +8,7 @@
           @click="onClose"
           v-if="showCloseButton"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
+          <X :size="20" />
         </button>
       </div>
 
@@ -68,19 +58,7 @@
         class="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
         @click="handleEdit"
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-          ></path>
-          <path d="m18.5 2.5 3 3L13 14l-4 1 1-4 8.5-8.5z"></path>
-        </svg>
+        <Edit :size="20" />
       </button>
     </div>
   </div>
@@ -89,6 +67,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { Grade, BacType } from "../types/highSchools";
+import { X, Edit } from "lucide-vue-next";
 
 interface Props {
   title?: string;

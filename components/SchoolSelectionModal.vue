@@ -22,17 +22,7 @@
             class="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
             @click="closeModal"
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
+            <X :size="20" />
           </button>
         </div>
 
@@ -74,16 +64,7 @@
                   v-if="selectedSchoolId === school.id"
                   class="w-5 h-5 bg-gray-900 rounded-full flex items-center justify-center"
                 >
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    stroke-width="3"
-                  >
-                    <polyline points="20,6 9,17 4,12"></polyline>
-                  </svg>
+                  <Check :size="12" class="text-white" />
                 </div>
               </div>
             </button>
@@ -106,6 +87,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import type { HighSchool } from "../types/highSchools";
+import { X, Check } from "lucide-vue-next";
 
 interface Props {
   isVisible: boolean;
