@@ -5,12 +5,38 @@
     </div>
 
     <div class="max-w-lg mx-auto space-y-4 sm:space-y-6">
-      <SchoolCard
-        :school-name="selectedSchool?.name || 'Loading...'"
-        city="Lille"
-        school-type="Lycée Public"
-        @modify="handleSchoolModify"
-      />
+      <ClientOnly>
+        <SchoolCard
+          :school-name="selectedSchool?.name || 'Chargement...'"
+          city="Lille"
+          school-type="Lycée Public"
+          @modify="handleSchoolModify"
+        />
+        <template #fallback>
+          <div
+            class="relative bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-2xl p-5 sm:p-6 text-white"
+          >
+            <div>
+              <h2 class="text-xl font-semibold mb-2">Chargement...</h2>
+              <div class="flex items-center space-x-4 text-sm opacity-90">
+                <div class="flex items-center space-x-1">
+                  <div class="w-1 h-1 bg-white rounded-full"></div>
+                  <span>Lille</span>
+                </div>
+                <div class="flex items-center space-x-1">
+                  <div class="w-1 h-1 bg-white rounded-full"></div>
+                  <span>Lycée Public</span>
+                </div>
+              </div>
+            </div>
+            <button
+              class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/20 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm opacity-50 cursor-not-allowed"
+            >
+              Modifier
+            </button>
+          </div>
+        </template>
+      </ClientOnly>
 
       <ClassSelectionCard
         :grade-levels="grades"
