@@ -18,8 +18,18 @@
       </button>
     </div>
 
+    <!-- Loading State for Grades -->
+    <div v-if="gradesLoading" class="mb-6">
+      <div class="flex space-x-3">
+        <div class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"></div>
+        <div class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"></div>
+        <div class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"></div>
+      </div>
+    </div>
+
     <!-- Grade Level Selection -->
     <GradeSelector
+      v-else
       :gradeLevels="gradeLevels"
       :selectedGrade="selectedGrade"
       @update:selectedGrade="$emit('update:selectedGrade', $event)"
@@ -38,7 +48,7 @@
     <!-- Confirm Button -->
     <ConfirmButton
       :buttonText="confirmButtonText"
-      :disabled="!canConfirm"
+      :disabled="!canConfirm || gradesLoading"
       @confirm="$emit('confirm')"
     />
   </div>
@@ -56,6 +66,7 @@ interface Props {
   bacTypeTitle?: string;
   confirmButtonText?: string;
   showCloseButton?: boolean;
+  gradesLoading?: boolean;
 }
 
 interface Emits {
@@ -76,6 +87,7 @@ const props = withDefaults(defineProps<Props>(), {
   bacTypeTitle: 'Type de bac',
   confirmButtonText: 'Confirmer',
   showCloseButton: true,
+  gradesLoading: false,
 });
 
 const emit = defineEmits<Emits>();
