@@ -12,17 +12,26 @@
         </button>
       </div>
 
-      <div v-if="gradesLoading" class="mb-6">
-        <div class="flex space-x-3">
-          <div
-            class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
-          ></div>
-          <div
-            class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
-          ></div>
-          <div
-            class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
-          ></div>
+      <div v-if="loading" class="mb-6">
+        <div class="flex flex-col items-center justify-center py-8">
+          <div class="flex items-center space-x-3 mb-4">
+            <Loader2 :size="24" class="text-gray-400 animate-spin" />
+            <span class="text-gray-600 font-medium"
+              >Chargement des classes...</span
+            >
+          </div>
+
+          <div class="flex space-x-3 w-full justify-center">
+            <div
+              class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
+            ></div>
+            <div
+              class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
+            ></div>
+            <div
+              class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
+            ></div>
+          </div>
         </div>
       </div>
 
@@ -44,7 +53,7 @@
 
       <ConfirmButton
         :buttonText="confirmButtonText"
-        :disabled="!canConfirm || gradesLoading"
+        :disabled="!canConfirm || loading"
         @confirm="handleConfirm"
       />
     </div>
@@ -67,7 +76,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { Grade, BacType } from "../../types/highSchools/enum";
-import { X, Edit } from "lucide-vue-next";
+import { X, Edit, Loader2 } from "lucide-vue-next";
 import BacTypeSelector from "./BacTypeSelector.vue";
 import GradeSelector from "./GradeSelector.vue";
 import ConfirmButton from "../DesignSystem/ConfirmButton.vue";
@@ -81,7 +90,7 @@ interface Props {
   bacTypeTitle?: string;
   confirmButtonText?: string;
   showCloseButton?: boolean;
-  gradesLoading?: boolean;
+  loading?: boolean;
 }
 
 interface Emits {
@@ -102,7 +111,7 @@ const props = withDefaults(defineProps<Props>(), {
   bacTypeTitle: "Type de bac",
   confirmButtonText: "Confirmer",
   showCloseButton: true,
-  gradesLoading: false,
+  loading: false,
 });
 
 const emit = defineEmits<Emits>();

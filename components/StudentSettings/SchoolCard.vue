@@ -2,11 +2,12 @@
   <div
     class="relative bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-2xl p-5 sm:p-6 text-white"
   >
-    <div>
-      <h2 class="text-xl font-semibold mb-2">{{ schoolName }}</h2>
+    <div class="pr-20 sm:pr-24">
+      <h2 class="text-xl font-semibold mb-2 leading-tight">{{ schoolName }}</h2>
     </div>
+
     <button
-      class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/20 hover:bg-white/30 transition-colors px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm cursor-pointer"
+      class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/20 hover:bg-white/30 transition-colors px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm cursor-pointer flex-shrink-0"
       @click="onModify"
     >
       {{ modifyButtonText }}
