@@ -1,4 +1,5 @@
-import { BacType, Grade, HighSchool } from "./highSchools";
+import { BacType, Grade } from "../highSchools/enum";
+import { HighSchool } from "../highSchools/highSchools";
 
 export type StudentSettings = {
   id: string;

@@ -66,8 +66,11 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { Grade, BacType } from "../types/highSchools";
+import { Grade, BacType } from "../../types/highSchools/enum";
 import { X, Edit } from "lucide-vue-next";
+import BacTypeSelector from "./BacTypeSelector.vue";
+import GradeSelector from "./GradeSelector.vue";
+import ConfirmButton from "../DesignSystem/ConfirmButton.vue";
 
 interface Props {
   title?: string;

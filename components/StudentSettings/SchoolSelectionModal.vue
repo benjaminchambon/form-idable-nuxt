@@ -1,17 +1,14 @@
 <template>
-  <!-- Modal Overlay -->
   <Teleport to="body">
     <div
       v-if="isVisible"
       class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4"
       @click="closeModal"
     >
-      <!-- Modal Content -->
       <div
         class="bg-white rounded-t-2xl sm:rounded-2xl w-full max-w-lg max-h-[80vh] overflow-hidden"
         @click.stop
       >
-        <!-- Header -->
         <div
           class="flex items-center justify-between p-5 sm:p-6 border-b border-gray-100"
         >
@@ -26,7 +23,6 @@
           </button>
         </div>
 
-        <!-- Loading State -->
         <div v-if="schoolsLoading" class="p-6 text-center">
           <div
             class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"
@@ -34,14 +30,12 @@
           <p class="text-gray-600">Chargement des établissements...</p>
         </div>
 
-        <!-- Error State -->
         <div v-else-if="schoolsError" class="p-6 text-center">
           <p class="text-red-600">
             Erreur lors du chargement des établissements
           </p>
         </div>
 
-        <!-- Schools List -->
         <div v-else class="p-5 sm:p-6 max-h-[60vh] overflow-y-auto">
           <div class="space-y-3">
             <button
@@ -70,7 +64,6 @@
             </button>
           </div>
 
-          <!-- Confirm Button -->
           <div class="mt-6 pt-4 border-t border-gray-100">
             <ConfirmButton
               button-text="Confirmer la sélection"
@@ -86,8 +79,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import type { HighSchool } from "../types/highSchools";
+import type { HighSchool } from "../../types/highSchools/highSchools";
 import { X, Check } from "lucide-vue-next";
+import ConfirmButton from "../DesignSystem/ConfirmButton.vue";
 
 interface Props {
   isVisible: boolean;
@@ -107,7 +101,6 @@ const emit = defineEmits<Emits>();
 
 const selectedSchoolId = ref<string | null>(null);
 
-// Set initial selection when modal opens
 watch(
   () => props.isVisible,
   (visible) => {
@@ -117,7 +110,6 @@ watch(
   }
 );
 
-// Set initial selection when current school changes
 watch(
   () => props.currentSchool,
   (school) => {

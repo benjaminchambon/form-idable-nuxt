@@ -1,7 +1,7 @@
 import { computed } from "vue";
-import type { StudentSettings } from "../types/studentSettings";
+import type { StudentSettings } from "~/types/studentSettings";
 import { useFetch } from "nuxt/app";
-import type { ApiResponse } from "../types/api";
+import type { ApiResponse } from "~/types/api";
 
 export const useStudentSettings = () => {
   const { data, pending, error, refresh } = useFetch<

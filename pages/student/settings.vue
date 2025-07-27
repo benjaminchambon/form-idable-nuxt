@@ -5,88 +5,45 @@
     </div>
 
     <div class="max-w-lg mx-auto space-y-4 sm:space-y-6">
-      <ClientOnly>
-        <SchoolCard
-          :school-name="selectedSchool?.name || 'Chargement...'"
-          city="Lille"
-          school-type="Lycée Public"
-          @modify="handleSchoolModify"
-        />
-        <template #fallback>
-          <div
-            class="relative bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-2xl p-5 sm:p-6 text-white"
-          >
-            <div>
-              <h2 class="text-xl font-semibold mb-2">Chargement...</h2>
-              <div class="flex items-center space-x-4 text-sm opacity-90">
-                <div class="flex items-center space-x-1">
-                  <div class="w-1 h-1 bg-white rounded-full"></div>
-                  <span>Lille</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                  <div class="w-1 h-1 bg-white rounded-full"></div>
-                  <span>Lycée Public</span>
-                </div>
-              </div>
-            </div>
-            <button
-              class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/20 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm opacity-50 cursor-not-allowed"
-            >
-              Modifier
-            </button>
-          </div>
-        </template>
-      </ClientOnly>
+      <SchoolCard
+        :school-name="selectedSchool?.name || 'Chargement...'"
+        @modify="handleSchoolModify"
+      />
 
-      <ClientOnly>
-        <ClassSelectionCard
-          :grade-levels="grades"
-          v-model:selectedGrade="selectedGrade"
-          v-model:selectedBacType="selectedBacType"
-          :grades-loading="gradesLoading"
-        />
-        <template #fallback>
-          <div
-            class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100"
-          >
-            <div class="flex items-center justify-between mb-4">
-              <h2 class="text-lg font-semibold text-gray-900">Classe</h2>
-            </div>
-            <div class="space-y-4">
-              <div class="animate-pulse bg-gray-200 h-10 rounded-lg"></div>
-              <div class="animate-pulse bg-gray-200 h-10 rounded-lg"></div>
-            </div>
-          </div>
-        </template>
-      </ClientOnly>
+      <ClassSelectionCard
+        :grade-levels="grades"
+        v-model:selectedGrade="selectedGrade"
+        v-model:selectedBacType="selectedBacType"
+        :grades-loading="gradesLoading"
+      />
 
       <SectionCard title="Spécialités" />
 
       <SectionCard title="Notes" />
     </div>
 
-    <!-- School Selection Modal -->
-    <ClientOnly>
-      <SchoolSelectionModal
-        :is-visible="showSchoolModal"
-        :schools="schools"
-        :schools-loading="schoolsLoading"
-        :schools-error="schoolsError"
-        :current-school="selectedSchool"
-        @close="closeSchoolModal"
-        @select-school="handleSchoolSelection"
-      />
-    </ClientOnly>
+    <SchoolSelectionModal
+      :is-visible="showSchoolModal"
+      :schools="schools"
+      :schools-loading="schoolsLoading"
+      :schools-error="schoolsError"
+      :current-school="selectedSchool"
+      @close="closeSchoolModal"
+      @select-school="handleSchoolSelection"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { useSchools } from "../../composables/useSchools";
 import { useGrades } from "../../composables/useGrades";
-import type { HighSchool } from "../../types/highSchools";
+import type { HighSchool } from "../../types/highSchools/highSchools";
 import { useStudentSettings } from "../../composables/useStudentSettings";
-import { watchEffect } from "vue";
+import SchoolCard from "../../components/StudentSettings/SchoolCard.vue";
+import ClassSelectionCard from "../../components/StudentSettings/ClassSelectionCard.vue";
+import SchoolSelectionModal from "../../components/StudentSettings/SchoolSelectionModal.vue";
+import SectionCard from "../../components/StudentSettings/SectionCard.vue";
 
 const { schools, pending: schoolsLoading, error: schoolsError } = useSchools();
 const { grades, pending: gradesLoading, error: gradesError } = useGrades();

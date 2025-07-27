@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { BacType } from "../types/highSchools";
+import { BacType } from "../../types/highSchools/enum";
 
 interface Props {
   bacTypes?: string[];

@@ -1,10 +1,10 @@
 import { defineEventHandler } from "h3";
-import type { StudentSettings } from "../../../types/studentSettings";
-import type { HighSchool } from "../../../types/highSchools";
-import { Grade, BacType } from "../../../types/highSchools";
+import type { StudentSettings } from "../../../types/studentSettings/studentSettings";
+import type { HighSchool } from "../../../types/highSchools/highSchools";
+import { Grade, BacType } from "../../../types/highSchools/enum";
 import { highSchools } from "../../../server/mock/highSchools";
 import { apiError } from "../../../server/utils/apiError";
-import { ApiResponse } from "../../../types/api";
+import { ApiResponse } from "../../../types/api/api";
 
 function getRandomElement<T>(array: T[]): T {
   return array[Math.floor(Math.random() * array.length)];

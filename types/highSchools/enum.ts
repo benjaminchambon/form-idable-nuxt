@@ -1,8 +1,3 @@
-export type HighSchool = {
-  id: string;
-  name: string;
-};
-
 export enum Grade {
   SECONDARY = "Seconde",
   FIRST = "Première",
