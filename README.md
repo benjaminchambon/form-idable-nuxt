@@ -14,6 +14,8 @@ Form-idable-nuxt/
 │   └── README.md        # Detailed documentation
 ```
 
+Link to access to the app : https://my-nuxt-worker-app.benjamin-263.workers.dev/student/settings
+
 ## 🚀 Getting Started
 
 ### Quick Start
@@ -41,4 +43,3 @@ npm run dev
 - **Frontend**: Nuxt 3 + Vue 3 + TypeScript
 - **Styling**: Tailwind CSS
 - **API**: RESTful endpoints with mock data
-- **Build**: Vite + Node.js 18+

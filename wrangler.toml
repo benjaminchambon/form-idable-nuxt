@@ -1,0 +1,6 @@
+name = "my-nuxt-worker-app"
+compatibility_date = "2025-07-27"
+main = ".output/server/index.mjs"
+
+# Serve static assets from this folder
+site = { bucket = ".output/public" }
