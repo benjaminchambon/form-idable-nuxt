@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 p-4 sm:p-6">
+  <div class="min-h-screen p-4 sm:p-6">
     <div class="mb-6 sm:mb-8">
       <h1 class="text-xl sm:text-2xl font-medium text-gray-900">Edumapper</h1>
     </div>
@@ -16,8 +16,6 @@
         :grade-levels="grades"
         v-model:selectedGrade="selectedGrade"
         v-model:selectedBacType="selectedBacType"
-        @confirm="handleConfirmSelection"
-        @close="handleCloseSelection"
       />
 
       <SectionCard title="Spécialités" />
@@ -63,7 +61,6 @@ watch(
 );
 
 const handleSchoolModify = () => {
-  console.log('Modify school clicked', selectedSchool.value);
   showSchoolModal.value = true;
 };
 
@@ -73,19 +70,5 @@ const closeSchoolModal = () => {
 
 const handleSchoolSelection = (school: HighSchool) => {
   selectedSchool.value = school;
-  console.log('School selected:', school);
-};
-
-const handleConfirmSelection = () => {
-  console.log('Selection confirmed:', {
-    school: selectedSchool.value,
-    grade: selectedGrade.value,
-    bacType: selectedBacType.value,
-    gradesData: grades.value,
-  });
-};
-
-const handleCloseSelection = () => {
-  console.log('Close selection clicked');
 };
 </script>
