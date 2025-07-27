@@ -1,3 +1,3 @@
 <template>
-  <h1>Welcome to Form-idable-nuxt</h1>
+  <h1 class="text-lg bg-red-500">Hello world !</h1>
 </template>

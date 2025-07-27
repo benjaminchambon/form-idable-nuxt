@@ -64,9 +64,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useSchools, useGrades } from '../../composables';
-import type { HighSchool } from '../../types/highSchools';
+import { ref, watch } from "vue";
+import { useSchools } from "../../composables/useSchools";
+import { useGrades } from "../../composables/useGrades";
+import type { HighSchool } from "../../types/highSchools";
 
 const { schools, pending: schoolsLoading, error: schoolsError } = useSchools();
 const { grades, pending: gradesLoading, error: gradesError } = useGrades();
