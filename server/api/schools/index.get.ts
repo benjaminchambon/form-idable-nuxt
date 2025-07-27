@@ -8,10 +8,10 @@ export default defineEventHandler(async (event): Promise<ApiResponse<HighSchool[
   try {
     return {
       data: highSchools,
-      message: 'Liste des écoles récupérée avec succès',
+      message: 'List of schools retrieved successfully',
     };
   } catch (err) {
-    console.error('Erreur API /api/highSchools :', err);
-    throw apiError(500, 'Impossible de récupérer les écoles');
+    console.error('API error /api/highSchools :', err);
+    throw apiError(500, 'Unable to retrieve the schools.');
   }
 });

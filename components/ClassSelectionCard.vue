@@ -1,8 +1,6 @@
 <template>
   <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100">
-    <!-- Selection Mode (shown when not confirmed) -->
     <div v-if="!isConfirmed">
-      <!-- Header -->
       <div class="flex items-center justify-between mb-6">
         <h3 class="text-lg font-medium text-gray-900">{{ title }}</h3>
         <button
@@ -24,7 +22,6 @@
         </button>
       </div>
 
-      <!-- Loading State for Grades -->
       <div v-if="gradesLoading" class="mb-6">
         <div class="flex space-x-3">
           <div class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"></div>
@@ -33,7 +30,6 @@
         </div>
       </div>
 
-      <!-- Grade Level Selection -->
       <GradeSelector
         v-else
         :gradeLevels="gradeLevels"
@@ -42,7 +38,6 @@
         @gradeSelected="$emit('gradeSelected', $event)"
       />
 
-      <!-- Bac Type Selection -->
       <BacTypeSelector
         :bacTypes="bacTypes"
         :selectedBacType="selectedBacType"
@@ -51,7 +46,6 @@
         @bacTypeSelected="$emit('bacTypeSelected', $event)"
       />
 
-      <!-- Confirm Button -->
       <ConfirmButton
         :buttonText="confirmButtonText"
         :disabled="!canConfirm || gradesLoading"
@@ -59,7 +53,6 @@
       />
     </div>
 
-    <!-- Summary Mode (shown after confirmation) -->
     <div v-else class="flex items-center justify-between">
       <div>
         <h4 class="text-sm font-medium text-gray-900 mb-1">Classe</h4>
@@ -120,15 +113,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
-// Internal state for confirmation
 const isConfirmed = ref(false);
 
-// Computed property to check if confirm button should be enabled
 const canConfirm = computed(() => {
   return props.selectedGrade !== null && props.selectedBacType !== null;
 });
 
-// Computed property for summary text
 const summaryText = computed(() => {
   if (props.selectedGrade && props.selectedBacType) {
     return `${props.selectedGrade} ${props.selectedBacType}`;

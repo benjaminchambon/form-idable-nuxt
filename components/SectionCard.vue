@@ -20,7 +20,6 @@
       </button>
     </div>
 
-    <!-- Optional content slot -->
     <div v-if="$slots.default" class="mt-4">
       <slot />
     </div>

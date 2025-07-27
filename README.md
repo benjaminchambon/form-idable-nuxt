@@ -1,76 +1,44 @@
-# Nuxt Minimal Starter
+# 🎓 Form-idable-nuxt - Educational Management Platform
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A comprehensive educational management platform designed for French educational institutions, featuring student onboarding, academic configuration, and institutional management.
 
-## Setup
+## 📁 Project Structure
 
-Make sure to install dependencies:
+```
+Form-idable-nuxt/
+├── 📂 nuxt-app/          # Main Nuxt 3 application
+│   ├── components/       # Vue components
+│   ├── pages/           # Application pages
+│   ├── composables/     # State management
+│   ├── server/          # API endpoints
+│   └── README.md        # Detailed documentation
+```
+
+## 🚀 Getting Started
+
+### Quick Start
 
 ```bash
-# npm
+# Navigate to the main application
+cd nuxt-app
+
+# Install dependencies
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# Start development server
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## ✨ Key Features
 
-Build the application for production:
+- **🏫 School Management** - Browse and select educational institutions
+- **📚 Academic Configuration** - Grade levels and baccalauréat types
+- **📱 Mobile-First Design** - Optimized for all devices
+- **🎨 Modern UI** - Interface with Tailwind CSS
 
-```bash
-# npm
-npm run build
+## 🛠️ Technology Stack
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-# form-idable-nuxt
+- **Frontend**: Nuxt 3 + Vue 3 + TypeScript
+- **Styling**: Tailwind CSS
+- **API**: RESTful endpoints with mock data
+- **Build**: Vite + Node.js 18+
