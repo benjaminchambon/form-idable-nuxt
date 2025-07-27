@@ -6,7 +6,7 @@
         :key="level"
         @click="selectGrade(level)"
         :class="[
-          'px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 min-w-0 flex-shrink-0',
+          'px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 min-w-0 flex-shrink-0 cursor-pointer',
           selectedGrade === level
             ? 'bg-gray-900 text-white shadow-lg'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200',
@@ -25,19 +25,19 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'update:selectedGrade', value: string): void;
-  (e: 'gradeSelected', value: string): void;
+  (e: "update:selectedGrade", value: string): void;
+  (e: "gradeSelected", value: string): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  gradeLevels: () => ['Seconde', 'Première', 'Terminale'],
+  gradeLevels: () => ["Seconde", "Première", "Terminale"],
   selectedGrade: null,
 });
 
 const emit = defineEmits<Emits>();
 
 const selectGrade = (grade: string) => {
-  emit('update:selectedGrade', grade);
-  emit('gradeSelected', grade);
+  emit("update:selectedGrade", grade);
+  emit("gradeSelected", grade);
 };
 </script>

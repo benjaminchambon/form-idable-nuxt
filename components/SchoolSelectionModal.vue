@@ -12,9 +12,16 @@
         @click.stop
       >
         <!-- Header -->
-        <div class="flex items-center justify-between p-5 sm:p-6 border-b border-gray-100">
-          <h3 class="text-lg font-medium text-gray-900">Choisir un établissement</h3>
-          <button class="text-gray-400 hover:text-gray-600 p-1" @click="closeModal">
+        <div
+          class="flex items-center justify-between p-5 sm:p-6 border-b border-gray-100"
+        >
+          <h3 class="text-lg font-medium text-gray-900">
+            Choisir un établissement
+          </h3>
+          <button
+            class="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
+            @click="closeModal"
+          >
             <svg
               width="20"
               height="20"
@@ -39,7 +46,9 @@
 
         <!-- Error State -->
         <div v-else-if="schoolsError" class="p-6 text-center">
-          <p class="text-red-600">Erreur lors du chargement des établissements</p>
+          <p class="text-red-600">
+            Erreur lors du chargement des établissements
+          </p>
         </div>
 
         <!-- Schools List -->
@@ -50,10 +59,10 @@
               :key="school.id"
               @click="selectSchool(school)"
               :class="[
-                'w-full text-left p-4 rounded-2xl border-2 transition-all duration-200',
+                'w-full text-left p-4 rounded-2xl border-2 transition-all duration-200 cursor-pointer',
                 selectedSchoolId === school.id
                   ? 'border-gray-900 bg-gray-50'
-                  : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50',
+                  : 'border-gray-200 hover:border-gray-300',
               ]"
             >
               <div class="flex items-center justify-between">
@@ -95,8 +104,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import type { HighSchool } from '../types/highSchools';
+import { ref, watch } from "vue";
+import type { HighSchool } from "../types/highSchools";
 
 interface Props {
   isVisible: boolean;
@@ -107,8 +116,8 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'close'): void;
-  (e: 'selectSchool', school: HighSchool): void;
+  (e: "close"): void;
+  (e: "selectSchool", school: HighSchool): void;
 }
 
 const props = defineProps<Props>();
@@ -141,15 +150,17 @@ const selectSchool = (school: HighSchool) => {
 };
 
 const confirmSelection = () => {
-  const selectedSchool = props.schools.find((school) => school.id === selectedSchoolId.value);
+  const selectedSchool = props.schools.find(
+    (school) => school.id === selectedSchoolId.value
+  );
   if (selectedSchool) {
-    emit('selectSchool', selectedSchool);
+    emit("selectSchool", selectedSchool);
     closeModal();
   }
 };
 
 const closeModal = () => {
   selectedSchoolId.value = null;
-  emit('close');
+  emit("close");
 };
 </script>

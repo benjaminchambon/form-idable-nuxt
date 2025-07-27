@@ -16,7 +16,7 @@
       </div>
     </div>
     <button
-      class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/20 hover:bg-white/30 transition-colors px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
+      class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/20 hover:bg-white/30 transition-colors px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm cursor-pointer"
       @click="onModify"
     >
       {{ modifyButtonText }}
@@ -33,16 +33,16 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'modify'): void;
+  (e: "modify"): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  modifyButtonText: 'Modifier',
+  modifyButtonText: "Modifier",
 });
 
 const emit = defineEmits<Emits>();
 
 const onModify = () => {
-  emit('modify');
+  emit("modify");
 };
 </script>

@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between mb-6">
         <h3 class="text-lg font-medium text-gray-900">{{ title }}</h3>
         <button
-          class="text-gray-400 hover:text-gray-600 p-1"
+          class="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
           @click="onClose"
           v-if="showCloseButton"
         >
@@ -24,9 +24,15 @@
 
       <div v-if="gradesLoading" class="mb-6">
         <div class="flex space-x-3">
-          <div class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"></div>
-          <div class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"></div>
-          <div class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"></div>
+          <div
+            class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
+          ></div>
+          <div
+            class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
+          ></div>
+          <div
+            class="px-6 py-3 rounded-full bg-gray-200 animate-pulse w-24 h-10"
+          ></div>
         </div>
       </div>
 
@@ -58,7 +64,10 @@
         <h4 class="text-sm font-medium text-gray-900 mb-1">Classe</h4>
         <p class="text-lg font-medium text-gray-900">{{ summaryText }}</p>
       </div>
-      <button class="text-gray-400 hover:text-gray-600 p-1" @click="handleEdit">
+      <button
+        class="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
+        @click="handleEdit"
+      >
         <svg
           width="20"
           height="20"
@@ -67,7 +76,9 @@
           stroke="currentColor"
           stroke-width="2"
         >
-          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+          <path
+            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+          ></path>
           <path d="m18.5 2.5 3 3L13 14l-4 1 1-4 8.5-8.5z"></path>
         </svg>
       </button>
@@ -76,7 +87,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
+import { Grade, BacType } from "../types/highSchools";
 
 interface Props {
   title?: string;
@@ -91,22 +103,22 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'update:selectedGrade', value: string): void;
-  (e: 'update:selectedBacType', value: string): void;
-  (e: 'gradeSelected', value: string): void;
-  (e: 'bacTypeSelected', value: string): void;
-  (e: 'confirm'): void;
-  (e: 'close'): void;
+  (e: "update:selectedGrade", value: string): void;
+  (e: "update:selectedBacType", value: string): void;
+  (e: "gradeSelected", value: string): void;
+  (e: "bacTypeSelected", value: string): void;
+  (e: "confirm"): void;
+  (e: "close"): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'En quelle classe es-tu ?',
-  gradeLevels: () => ['Seconde', 'Première', 'Terminale'],
-  bacTypes: () => ['Général', 'Technologique', 'Professionnel'],
+  title: "En quelle classe es-tu ?",
+  gradeLevels: () => Object.values(Grade),
+  bacTypes: () => Object.values(BacType),
   selectedGrade: null,
   selectedBacType: null,
-  bacTypeTitle: 'Type de bac',
-  confirmButtonText: 'Confirmer',
+  bacTypeTitle: "Type de bac",
+  confirmButtonText: "Confirmer",
   showCloseButton: true,
   gradesLoading: false,
 });
@@ -123,12 +135,12 @@ const summaryText = computed(() => {
   if (props.selectedGrade && props.selectedBacType) {
     return `${props.selectedGrade} ${props.selectedBacType}`;
   }
-  return 'Non sélectionné';
+  return "Non sélectionné";
 });
 
 const handleConfirm = () => {
   isConfirmed.value = true;
-  emit('confirm');
+  emit("confirm");
 };
 
 const handleEdit = () => {
@@ -136,6 +148,7 @@ const handleEdit = () => {
 };
 
 const onClose = () => {
-  emit('close');
+  isConfirmed.value = true;
+  emit("close");
 };
 </script>

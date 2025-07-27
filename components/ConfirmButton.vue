@@ -1,6 +1,6 @@
 <template>
   <button
-    class="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-4 px-6 rounded-2xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+    class="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-4 px-6 rounded-2xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-lg"
     @click="onConfirm"
     :disabled="disabled"
   >
@@ -15,11 +15,11 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'confirm'): void;
+  (e: "confirm"): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  buttonText: 'Confirmer',
+  buttonText: "Confirmer",
   disabled: false,
 });
 
@@ -27,7 +27,7 @@ const emit = defineEmits<Emits>();
 
 const onConfirm = () => {
   if (!props.disabled) {
-    emit('confirm');
+    emit("confirm");
   }
 };
 </script>

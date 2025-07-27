@@ -38,12 +38,27 @@
         </template>
       </ClientOnly>
 
-      <ClassSelectionCard
-        :grade-levels="grades"
-        v-model:selectedGrade="selectedGrade"
-        v-model:selectedBacType="selectedBacType"
-        :grades-loading="gradesLoading"
-      />
+      <ClientOnly>
+        <ClassSelectionCard
+          :grade-levels="grades"
+          v-model:selectedGrade="selectedGrade"
+          v-model:selectedBacType="selectedBacType"
+          :grades-loading="gradesLoading"
+        />
+        <template #fallback>
+          <div
+            class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100"
+          >
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-lg font-semibold text-gray-900">Classe</h2>
+            </div>
+            <div class="space-y-4">
+              <div class="animate-pulse bg-gray-200 h-10 rounded-lg"></div>
+              <div class="animate-pulse bg-gray-200 h-10 rounded-lg"></div>
+            </div>
+          </div>
+        </template>
+      </ClientOnly>
 
       <SectionCard title="Spécialités" />
 
@@ -51,42 +66,60 @@
     </div>
 
     <!-- School Selection Modal -->
-    <SchoolSelectionModal
-      :is-visible="showSchoolModal"
-      :schools="schools"
-      :schools-loading="schoolsLoading"
-      :schools-error="schoolsError"
-      :current-school="selectedSchool"
-      @close="closeSchoolModal"
-      @select-school="handleSchoolSelection"
-    />
+    <ClientOnly>
+      <SchoolSelectionModal
+        :is-visible="showSchoolModal"
+        :schools="schools"
+        :schools-loading="schoolsLoading"
+        :schools-error="schoolsError"
+        :current-school="selectedSchool"
+        @close="closeSchoolModal"
+        @select-school="handleSchoolSelection"
+      />
+    </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { useSchools } from "../../composables/useSchools";
 import { useGrades } from "../../composables/useGrades";
 import type { HighSchool } from "../../types/highSchools";
+import { useStudentSettings } from "../../composables/useStudentSettings";
+import { watchEffect } from "vue";
 
 const { schools, pending: schoolsLoading, error: schoolsError } = useSchools();
 const { grades, pending: gradesLoading, error: gradesError } = useGrades();
+const {
+  studentSettings,
+  pending: studentSettingsLoading,
+  error: studentSettingsError,
+} = useStudentSettings();
 
 const selectedGrade = ref<string | null>(null);
 const selectedBacType = ref<string | null>(null);
 const selectedSchool = ref<HighSchool | null>(null);
 const showSchoolModal = ref(false);
 
-// Watch for schools data to load and set the first school as default
-watch(
-  schools,
-  (newSchools) => {
-    if (newSchools && newSchools.length > 0 && !selectedSchool.value) {
-      selectedSchool.value = newSchools[0];
+watchEffect(() => {
+  if (!studentSettingsLoading.value && studentSettings.value) {
+    if (!selectedSchool.value && schools.value?.length) {
+      const match = schools.value.find(
+        (s) => s.id === studentSettings.value?.highSchool.id
+      );
+
+      selectedSchool.value = match || schools.value[0];
     }
-  },
-  { immediate: true }
-);
+
+    if (!selectedGrade.value && grades.value?.length) {
+      selectedGrade.value = studentSettings.value.grade;
+    }
+
+    if (!selectedBacType.value && studentSettings.value.bacType) {
+      selectedBacType.value = studentSettings.value.bacType;
+    }
+  }
+});
 
 const handleSchoolModify = () => {
   showSchoolModal.value = true;

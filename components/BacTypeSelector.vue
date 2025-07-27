@@ -7,7 +7,7 @@
         :key="type"
         @click="selectBacType(type)"
         :class="[
-          'px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 min-w-0 flex-shrink-0',
+          'px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 min-w-0 flex-shrink-0 cursor-pointer',
           selectedBacType === type
             ? 'bg-gray-900 text-white shadow-lg'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200',
@@ -20,6 +20,8 @@
 </template>
 
 <script setup lang="ts">
+import { BacType } from "../types/highSchools";
+
 interface Props {
   bacTypes?: string[];
   selectedBacType?: string | null;
@@ -27,20 +29,20 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'update:selectedBacType', value: string): void;
-  (e: 'bacTypeSelected', value: string): void;
+  (e: "update:selectedBacType", value: string): void;
+  (e: "bacTypeSelected", value: string): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  bacTypes: () => ['Général', 'Technologique', 'Professionnel'],
+  bacTypes: () => Object.values(BacType),
   selectedBacType: null,
-  title: 'Type de bac',
+  title: "Type de bac",
 });
 
 const emit = defineEmits<Emits>();
 
 const selectBacType = (type: string) => {
-  emit('update:selectedBacType', type);
-  emit('bacTypeSelected', type);
+  emit("update:selectedBacType", type);
+  emit("bacTypeSelected", type);
 };
 </script>

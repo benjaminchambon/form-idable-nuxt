@@ -5,7 +5,11 @@
         <h3 class="text-lg font-medium text-gray-900">{{ title }}</h3>
         <p class="text-sm text-gray-500 mt-1">{{ subtitle }}</p>
       </div>
-      <button class="text-gray-400 hover:text-gray-600 p-1" @click="onEdit" v-if="showEditButton">
+      <button
+        class="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
+        @click="onEdit"
+        v-if="showEditButton"
+      >
         <svg
           width="20"
           height="20"
@@ -14,7 +18,9 @@
           stroke="currentColor"
           stroke-width="2"
         >
-          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+          <path
+            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+          ></path>
           <path d="m18.5 2.5 3 3L13 14l-4 1 1-4 8.5-8.5z"></path>
         </svg>
       </button>
@@ -34,17 +40,17 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'edit'): void;
+  (e: "edit"): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  subtitle: 'À compléter',
+  subtitle: "À compléter",
   showEditButton: true,
 });
 
 const emit = defineEmits<Emits>();
 
 const onEdit = () => {
-  emit('edit');
+  emit("edit");
 };
 </script>
