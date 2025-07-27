@@ -42,6 +42,7 @@
         :grade-levels="grades"
         v-model:selectedGrade="selectedGrade"
         v-model:selectedBacType="selectedBacType"
+        :grades-loading="gradesLoading"
       />
 
       <SectionCard title="Spécialités" />
