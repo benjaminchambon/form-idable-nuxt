@@ -1,16 +1,20 @@
 <template>
-  <div class="mb-8">
-    <h4 class="text-sm font-medium text-gray-900 mb-4">{{ title }}</h4>
+  <div>
+    <h4
+      class="font-['DM_Sans'] font-medium text-[14px] leading-[16px] align-middle mb-[16px]"
+    >
+      {{ title }}
+    </h4>
     <div class="flex flex-wrap gap-3">
       <button
         v-for="type in bacTypes"
         :key="type"
         @click="selectBacType(type)"
         :class="[
-          'px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 min-w-0 flex-shrink-0 cursor-pointer',
+          'pt-2 pr-4 pb-2 pl-4 h-[36px] rotate-0 opacity-100 rounded-[24px]',
           selectedBacType === type
-            ? 'bg-gray-900 text-white shadow-lg'
-            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200',
+            ? 'outline outline-1 outline-black text-center align-middle font-medium text-[16px] leading-[20px] font-[\'DM_Sans\'] px-4 py-2'
+            : 'bg-[#F7F3F0] text-center align-middle font-medium text-[16px] leading-[20px] font-[\'DM_Sans\']',
         ]"
       >
         {{ type }}

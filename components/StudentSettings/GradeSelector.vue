@@ -1,15 +1,15 @@
 <template>
-  <div class="mb-6">
+  <div>
     <div class="flex flex-wrap gap-3">
       <button
         v-for="level in gradeLevels"
         :key="level"
         @click="selectGrade(level)"
         :class="[
-          'px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 min-w-0 flex-shrink-0 cursor-pointer',
+          'pt-2 pr-4 pb-2 pl-4 h-[36px] rotate-0 opacity-100 rounded-[24px]',
           selectedGrade === level
-            ? 'bg-gray-900 text-white shadow-lg'
-            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200',
+            ? 'outline outline-1 outline-black text-center align-middle font-medium text-[16px] leading-[20px] font-[\'DM_Sans\'] px-4 py-2'
+            : 'bg-[#F7F3F0] text-center align-middle font-medium text-[16px] leading-[20px] font-[\'DM_Sans\']',
         ]"
       >
         {{ level }}

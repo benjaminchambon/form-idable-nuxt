@@ -1,6 +1,11 @@
 <template>
   <button
-    class="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-4 px-6 rounded-2xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-lg"
+    :class="[
+      'h-[48px] pt-4 pr-6 pb-4 pl-6 gap-2 rotate-0 rounded-[1000px] inline-flex items-center justify-center',
+      disabled
+        ? 'w-[664px] opacity-50 border border-current cursor-not-allowed'
+        : 'w-full bg-black text-white',
+    ]"
     @click="onConfirm"
     :disabled="disabled"
   >

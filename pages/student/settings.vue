@@ -1,10 +1,12 @@
 <template>
-  <div class="min-h-screen p-4 sm:p-6">
-    <div class="mb-6 sm:mb-8">
-      <h1 class="text-xl sm:text-2xl font-medium text-gray-900">Edumapper</h1>
+  <div class="pb-20 gap-8 lg:gap-10 flex flex-col">
+    <div
+      class="flex items-center w-[100%] h-[60px] gap-3 p-4 sm:px-6 sm:py-4 lg:px-15 lg:py-4 border-b-2 border-current border-b-[rgba(27,27,27,0.1)] rotate-0 opacity-100"
+    >
+      <img src="~/assets/icons/logo.svg" />
     </div>
 
-    <div class="max-w-lg mx-auto space-y-4 sm:space-y-6">
+    <div class="pr-6 pl-6 gap-4 flex flex-col items-center justify-center">
       <SchoolCard
         :school-name="selectedSchool?.name || 'Chargement...'"
         @modify="handleSchoolModify"

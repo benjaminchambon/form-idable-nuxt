@@ -1,16 +1,26 @@
 <template>
-  <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100">
-    <div class="flex items-center justify-between">
-      <div>
-        <h3 class="text-lg font-medium text-gray-900">{{ title }}</h3>
-        <p class="text-sm text-gray-500 mt-1">{{ subtitle }}</p>
+  <div
+    class="w-[343px] max-w-[720px] gap-6 rounded-[16px] p-4 border border-white bg-[rgba(255,255,255,0.6)] sm:w-[696px] sm:h-[80px] lg:w-[720px] lg:h-[76px] rotate-0 opacity-100"
+  >
+    <div class="flex items-start justify-between">
+      <div class="flex flex-col gap-[4px]">
+        <h3
+          class="font-['DM_Sans'] font-semibold text-[16px] leading-[1.4] align-middle"
+        >
+          {{ title }}
+        </h3>
+        <p
+          class="text-[#646A81] font-['DM_Sans'] font-normal text-[14px] leading-[1.4] align-middle"
+        >
+          {{ subtitle }}
+        </p>
       </div>
       <button
-        class="text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
+        class="[self-start] cursor-pointer"
         @click="onEdit"
         v-if="showEditButton"
       >
-        <Edit :size="20" />
+        <img src="~/assets/icons/edit.svg" />
       </button>
     </div>
 
