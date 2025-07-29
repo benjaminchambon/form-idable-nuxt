@@ -68,7 +68,7 @@
 
   <div
     v-else
-    class="flex justify-between items-start w-[343px] sm:w-[696px] lg:w-[720px] h-[76px] max-w-[720px] gap-6 p-4 rounded-[16px] rotate-0 opacity-100 bg-white"
+    class="flex justify-between items-start w-[343px] sm:w-[696px] lg:w-[720px] h-[76px] max-w-[720px] gap-6 p-4 rounded-[16px] bg-white/60 border-white hover:bg-white/100"
   >
     <div>
       <h4

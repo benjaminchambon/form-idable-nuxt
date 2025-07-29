@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[343px] max-w-[720px] gap-6 rounded-[16px] p-4 border border-white bg-[rgba(255,255,255,0.6)] sm:w-[696px] sm:h-[80px] lg:w-[720px] lg:h-[76px] rotate-0 opacity-100"
+    class="w-[343px] max-w-[720px] gap-6 rounded-[16px] p-4 border border-white bg-[rgba(255,255,255,0.6)] sm:w-[696px] sm:h-[80px] lg:w-[720px] lg:h-[76px] rotate-0 opacity-100 bg-white/60 hover:bg-white/100"
   >
     <div class="flex items-start justify-between">
       <div class="flex flex-col gap-[4px]">
